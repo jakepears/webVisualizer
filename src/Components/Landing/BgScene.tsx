@@ -1,6 +1,7 @@
 /** @format */
-'use client'
+'use client';
 import { Canvas, useFrame } from '@react-three/fiber';
+import Link from 'next/link';
 import {
 	Lightformer,
 	Text,
@@ -12,23 +13,23 @@ import { EffectComposer, N8AO, TiltShift2 } from '@react-three/postprocessing';
 import { easing } from 'maath';
 
 function Rig() {
-    useFrame((state, delta) => {
-        easing.damp3(
-            state.camera.position,
-            [
-                Math.sin(-state.pointer.x) * 5,
-                state.pointer.y * 3.5,
-                15 + Math.cos(state.pointer.x) * 10,
-            ],
-            0.2,
-            delta
-        );
-        state.camera.lookAt(0, 0, 0);
-    });
-    return null;
+	useFrame((state, delta) => {
+		easing.damp3(
+			state.camera.position,
+			[
+				Math.sin(-state.pointer.x) * 5,
+				state.pointer.y * 3.5,
+				15 + Math.cos(state.pointer.x) * 10,
+			],
+			0.2,
+			delta
+		);
+		state.camera.lookAt(0, 0, 0);
+	});
+	return null;
 }
 
-export default function BgScene(){
+export default function BgScene() {
 	return (
 		<Canvas
 			eventPrefix='client'
@@ -61,18 +62,19 @@ export default function BgScene(){
 	);
 }
 
-function Status(props : any) {
+function Status(props: any) {
 	const text = 'visualize';
-	const jump = 'jump in'
+	const jump = 'jump in';
 	return (
-		<Text
-			fontSize={16}
-			letterSpacing={-0.015}
-			color=''
-			{...props}>
+		<Text fontSize={16} letterSpacing={-0.015} color='' {...props}>
 			{text}
-			<Html className='absolute text-wildSand text-2xl text-center font-normal px-12 py-4 rounded-[3.125rem] border-silver border-[2px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:border-none hover:border-codGray hover:text-codGray hover:bg-wildSand hover:scale-110 duration-[350ms] transition ease-in-out' transform>
-				{jump}
+			<Html
+				className='absolute text-wildSand text-2xl text-center font-normal px-12 py-4 rounded-[3.125rem] border-silver border-[2px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:border-none hover:border-codGray hover:text-codGray hover:bg-wildSand hover:scale-110 duration-[350ms] transition ease-in-out'
+				transform>
+				<Link href='/visual'>
+					<style jsx>{`fontSize={12}`}</style>
+					{jump}
+				</Link>
 			</Html>
 		</Text>
 	);
