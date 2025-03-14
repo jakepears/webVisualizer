@@ -53,7 +53,7 @@ export default function BgScene() {
 					onUpdate={(self) => self.lookAt(0, 0, 0)}
 				/>
 			</Environment>
-			<EffectComposer disableNormalPass>
+			<EffectComposer enableNormalPass>
 				<N8AO aoRadius={1} intensity={1.5} />
 				<TiltShift2 blur={0.125} />
 			</EffectComposer>
